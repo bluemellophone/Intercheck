@@ -1,0 +1,88 @@
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Create the tabs -->
+    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+      <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <!-- Home tab content -->
+      <div class="tab-pane active" id="control-sidebar-home-tab">
+        <h3 class="control-sidebar-heading">Intercheck Options</h3>
+        <a href="#" id="default-settings"><i class="fa fa-undo"></i> <span>Reset to defaults</span></a>
+        <br/>
+        <span>Interval (in seconds)</span>
+        <input class="form-control" type="number" name="intercheck-settings-interval" min="60" max="3600" placeholder="Interval" value="{{ settings_dict['interval'] }}">
+        <div class="checkbox">
+        <label>
+          <input type="checkbox" name="intercheck-settings-interval-exact" {% if settings_dict['interval_exact'] %}checked{% endif %}> Exact Interval
+          <br/>
+          <small style="color: #999;"><i>perform SpeedTest on nearest minute using the interval</i></small>
+        </label>
+        <i><span id="intercheck-settings-message" class="pull-right"></span></i>
+      </div>
+
+        <h3 class="control-sidebar-heading">Recent Activity</h3>
+        <small>Last 7 days of activity</small>
+        <ul class="control-sidebar-menu">
+          <li>
+            <a href="javascript::;">
+              <i class="menu-icon ion-ios-close-outline bg-red"></i>
+
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Internet Disconnected</h4>
+                <p>6/1 at 3:45 PM - <i>Onngoing</i> &nbsp;<span class="description-percentage text-red"><i class="fa fa-caret-right"></i> 19 mins.</span></p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="javascript::;">
+              <i class="menu-icon ion-ios-timer-outline bg-yellow"></i>
+
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Abnormal Ping Detected</h4>
+
+                <p>Ping 430 ms. &nbsp;<span class="description-percentage text-yellow"><i class="fa fa-caret-up"></i> 123%</span></p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="javascript::;">
+              <i class="menu-icon ion-ios-cloud-download-outline bg-green"></i>
+
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Abnormal Download Detected</h4>
+                <p>Download 0.1 Mb/s &nbsp;<span class="description-percentage text-green"><i class="fa fa-caret-down"></i> 231%</span></p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="javascript::;">
+              <i class="menu-icon ion-ios-cloud-upload-outline bg-light-blue"></i>
+
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Abnormal Upload Detected</h4>
+                <p>Upload 0.1 Mb/s &nbsp;<span class="description-percentage text-blue"><i class="fa fa-caret-down"></i> 210%</span></p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="javascript::;">
+              <i class="menu-icon ion-ios-close-outline bg-red"></i>
+
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Downtime Detected</h4>
+                <p>6/1 at 3:45 PM - 6/1 at 4:12 PM &nbsp;<span class="description-percentage text-red"><i class="fa fa-caret-right"></i> 17 mins.</span></p>
+              </div>
+            </a>
+          </li>
+        </ul>
+        <!-- /.control-sidebar-menu -->
+      </div>
+      <!-- /.tab-pane -->
+    </div>
+  </aside>
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>

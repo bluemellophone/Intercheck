@@ -1,0 +1,195 @@
+{% extends "layout.html" %}
+{% block content %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Dashboard
+        <small>
+          <a href="#" id="summary-updated">
+            <span>
+              Last Updated: <span id="summary-updated-time"></span>
+            </span>
+          </a>
+
+        </small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+      <!-- Main row -->
+      <div class="row">
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <!-- Info Boxes Style 2 -->
+          <div class="info-box bg-yellow">
+            <span class="info-box-icon"><i class="ion ion-ios-timer-outline"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Ping (<span id="summary-days">-</span> Day Avg.)</span>
+              <span class="info-box-number"><span id="summary-ping">-</span> ms.</span>
+
+              <div class="progress">
+                <div class="progress-bar" style="width: 100%"></div>
+              </div>
+                  <span class="progress-description">
+                    <span id="summary-ping-daily">-</span> ms. last 24 hours
+                  </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <!-- /.info-box -->
+          <div class="info-box bg-green">
+            <span class="info-box-icon"><i class="ion ion-ios-cloud-download-outline"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Download (<span id="summary-days">-</span> Day Avg.)</span>
+              <span class="info-box-number"><span id="summary-download">-</span> Mb/s</span>
+
+              <div class="progress">
+                <div class="progress-bar" style="width: 100%"></div>
+              </div>
+                  <span class="progress-description">
+                    <span id="summary-download-daily">-</span> Mb/s last 24 hours
+                  </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <!-- /.info-box -->
+          <div class="info-box bg-aqua">
+            <span class="info-box-icon"><i class="ion ion-ios-cloud-upload-outline"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Upload (<span id="summary-days">-</span> Day Avg.)</span>
+              <span class="info-box-number"><span id="summary-upload">-</span> Mb/s</span>
+
+              <div class="progress">
+                <div class="progress-bar" style="width: 100%"></div>
+              </div>
+                  <span class="progress-description">
+                    <span id="summary-upload-daily">-</span> Mb/s last 24 hours
+                  </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <!-- /.info-box -->
+          <div class="info-box bg-red">
+            <span class="info-box-icon"><i class="ion-ios-close-outline"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Downtime (Total Last <span id="summary-days">-</span> Days)</span>
+              <span class="info-box-number"><span id="summary-downtime">-</span> minutes</span>
+
+              <div class="progress">
+                <div class="progress-bar" style="width: 100%"></div>
+              </div>
+                  <span class="progress-description">
+                    <span id="summary-downtime-daily">-</span> minutes in last 24 hours
+                  </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">SpeedTest Graphs (Last 30 Days)</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                <!-- <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown"></button> -->
+                <!-- <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button> -->
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <div id="d3-graph-1" class="graph-full"></div>
+                  <div id="d3-graph-2" class="graph-half"></div>
+                  <div id="d3-graph-3" class="graph-half"></div>
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- ./box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+{% endblock %}
+{% block content_custom_javascript %}
+  <script>
+
+    var data_speedtest = {
+        "start": 1336594920000,
+        "end": 1336680960000,
+        "step": 60000,
+        "names": ["Ping", "Download", "Upload"],
+        "displayNames": ["Ping", "Download", "Upload"],
+        "colors": ["#f39c12", "#00a65a", "#00c0ef"],
+        "axis": ["left", "right", "right"],
+        "values": [[], [], []]
+    };
+
+    var data_connected = {
+        "start": 1336700820000,
+        "end": 1336707720000,
+        "step": 60000,
+        "names": ["Connected", "Disconnected"],
+        "displayNames": ["Connected", "Disconnected"],
+        "colors": ["#00c0ef","#dd4b39"],
+        "values": [[], []]
+    };
+
+    var data_downtime = {
+        "start": 1938982200000,
+        "end": 1939413600000,
+        "step": 600000,
+        "names": ["Downtime"],
+        "displayNames": ["Downtime"],
+        "colors": ["#dd4b39"],
+        "values": [[]]
+    };
+
+    var graph_speedtest = new LineGraph({
+        containerId: 'd3-graph-1',
+        data: data_speedtest
+    });
+
+    var graph_connected = new LineGraph({
+        containerId: 'd3-graph-2',
+        data: data_connected
+    });
+
+    var graph_downtime = new LineGraph({
+        containerId: 'd3-graph-3',
+        data: data_downtime
+    });
+  </script>
+{% endblock %}
