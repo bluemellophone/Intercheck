@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 from __future__ import absolute_import, division, print_function
 from setuptools import setup
-import intercheck
+from intercheck import __version__, tagline
 
 setup(
     name='Intercheck',
-    version=intercheck.__version__,
+    version=__version__,
     author='Jason Parham',
     author_email='bluemellophone@gmail.com',
     license='Apache v. 2.0',
-    description=(intercheck.tagline),
+    description=(tagline),
     long_description=open('README.rst').read(),
     packages=['intercheck'],
     install_requires=[

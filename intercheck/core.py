@@ -133,6 +133,9 @@ def speedtest(verbose=True):
                             pass
         except httplib.BadStatusLine:
             pass
+        except Exception as unexpected:
+            print('\n\nCAUGHT UNEXPECTED EXCEPTION: %r\n\n' % (unexpected, ))
+            pass
     # Compile the results, possibly print
     start = timer.start
     duration = timer.duration
